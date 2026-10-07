@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Angeles Dodgers Official Replica | MLB.com</title>
+    
+    <!-- 
+      ========================================================================
+      CSS STYLESHEET (<style>)
+      ========================================================================
+      GUIDE TO CUSTOMIZATION:
+      
+      1. HOW TO CHANGE THE COLORS:
+         Locate the ':root' block below and modify the hex color variables:
+         - '--dodgers-blue': Main theme color (Header, titles, accents)
+         - '--dodgers-red': Accent color (Buttons, tags, highlights)
+         - '--dodgers-dark-blue': Secondary dark background color
+         - '--bg-light': Page background color
+         
+      2. HOW TO CHANGE SECTION SPACING & PADDING:
+         - Adjust '--section-margin-v' for vertical spacing between sections.
+         - Adjust '--container-padding' for side margins inside page containers.
+         
+      3. HOW TO EDIT TITLES & CONTENT:
+         - Search for HTML elements like <h1>, <h2>, <h3>, or <a> tags inside 
+           the <body> section to update news titles, category tags, or nav links.
+      ========================================================================
+    -->
+    <style>
+        :root {
+            /* BRAND COLOR PALETTE (Dodgers Official Palette) */
+            --dodgers-blue: #005A9C;      /* Primary Dodger Blue */
+            --dodgers-red: #EF3E42;       /* Accent Dodger Red */
+            --dodgers-dark-blue: #002D62; /* Dark Blue for Ticker & Video sections */
+            --text-dark: #111111;         /* Primary Dark Text Color */
+            --text-muted: #666666;        /* Secondary Muted Gray Text Color */
+            --bg-light: #F4F6F8;          /* Light Gray Background for Sections */
+            --card-bg: #FFFFFF;           /* Card Background Color */
+            --footer-bg: #091522;         /* Very Dark Navy for Footer Background */
+
+            /* LAYOUT & SPACING VARIABLES */
+            /* Edit this value to increase or decrease space between main content sections */
+            --section-margin-v: 48px;     
+            --container-padding: 24px;    /* Horizontal padding inside layout wrappers */
+            
+            /* DESIGN TOKENS */
+            --border-radius: 8px;
+            --box-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --box-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* Top Global Utility Bar */
+        .top-bar {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-links a {
+            color: #CCCCCC;
+            margin-left: 18px;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        .top-bar-links a:hover {
+            color: #FFFFFF;
+        }
+
+        /* Main Navigation Bar */
+        .main-header {
+            background-color: var(--dodgers-blue);
+            color: #FFFFFF;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 72px;
+        }
+
+        /* 
+           CUSTOMIZING THE LOGO:
+           Change 'LA' inside '.la-badge' or 'DODGERS' inside '.brand-text'
+        */
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: #FFFFFF;
+        }
+
+        .la-badge {
+            background-color: var(--dodgers-red);
+            color: #FFFFFF;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-style: italic;
+            box-shadow: inset 0 -2px 0 rgba(0,0,0,0.2);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 8px 0;
+            transition: color var(--transition-speed);
+        }
+
+        .nav-links a:hover {
+            color: #FFD700; /* Gold hover highlight */
+        }
+
+        .btn-tickets {
+            background-color: var(--dodgers-red);
+            color: #FFFFFF !important;
+            padding: 9px 20px !important;
+            border-radius: 20px;
+            font-weight: 800 !important;
+            box-shadow: 0 2px 8px rgba(239, 62, 66, 0.4);
+            transition: background-color var(--transition-speed), transform var(--transition-speed) !important;
+        }
+
+        .btn-tickets:hover {
+            background-color: #d62d31 !important;
+            transform: translateY(-1px);
+        }
+
+        .ticker-section {
+            background-color: var(--dodgers-dark-blue);
+            color: #FFFFFF;
+            padding: 12px 0;
+            border-bottom: 3px solid var(--dodgers-red);
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            gap: 16px;
+        }
+
+        .ticker-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 10px 16px;
+            border-radius: 6px;
+            min-width: 175px;
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .ticker-card .status {
+            font-size: 0.7rem;
+            color: #FFD700;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .ticker-team {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        .hero-section {
+            margin: var(--section-margin-v) 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2.2fr 1fr;
+            gap: 24px;
+        }
+
+        .hero-main {
+            position: relative;
+            background-color: #000000;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow-lg);
+            color: #FFFFFF;
+            min-height: 440px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .hero-main img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+            transition: transform 0.6s ease;
+        }
+
+        .hero-main:hover img {
+            transform: scale(1.04);
+        }
+
+        .hero-overlay {
+            position: relative;
+            z-index: 2;
+            padding: 36px 30px 30px;
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.95) 100%);
+        }
+
+        .hero-tag {
+            background-color: var(--dodgers-red);
+            color: #FFFFFF;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 2.2rem;
+            line-height: 1.25;
+            font-weight: 900;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #E0E0E0;
+            max-width: 90%;
+        }
+
+        /* Side Headline Feed */
+        .hero-side {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .side-news-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 16px;
+            box-shadow: var(--box-shadow-sm);
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .side-news-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .side-news-card img {
+            width: 100px;
+            height: 75px;
+            object-fit: cover;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .side-news-category {
+            font-size: 0.7rem;
+            color: var(--dodgers-blue);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .side-news-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.35;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        .spotlight-section {
+            background: linear-gradient(135deg, var(--dodgers-blue) 0%, var(--dodgers-dark-blue) 100%);
+            color: #FFFFFF;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: var(--section-margin-v) 0;
+            box-shadow: var(--box-shadow-lg);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .spotlight-img-wrap {
+            position: relative;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .spotlight-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--dodgers-red);
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .spotlight-content h3 {
+            font-size: 0.85rem;
+            color: #FFD700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .spotlight-content h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        .spotlight-stats {
+            display: flex;
+            gap: 24px;
+            margin: 20px 0;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-item .value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #FFFFFF;
+            line-height: 1;
+        }
+
+        .stat-item .label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.75);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .spotlight-bio {
+            font-size: 0.95rem;
+            color: #E2E8F0;
+            margin-bottom: 24px;
+        }
+
+        .news-section {
+            margin: var(--section-margin-v) 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 3px solid var(--dodgers-blue);
+            padding-bottom: 12px;
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--dodgers-blue);
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            position: relative;
+        }
+
+        .view-all-link {
+            font-weight: 800;
+            color: var(--dodgers-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color var(--transition-speed);
+        }
+
+        .view-all-link:hover {
+            color: var(--dodgers-red);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .news-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow-sm);
+            display: flex;
+            flex-direction: column;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .news-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .news-card-img {
+            height: 170px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .news-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .news-card-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .news-card-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            line-height: 1.35;
+            color: var(--text-dark);
+        }
+
+        .news-card-excerpt {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+            margin-bottom: 16px;
+        }
+
+        .video-section {
+            background-color: var(--dodgers-dark-blue);
+            color: #FFFFFF;
+            padding: 48px var(--container-padding);
+            margin: var(--section-margin-v) 0;
+            border-radius: var(--border-radius);
+        }
+
+        .video-section .section-title {
+            color: #FFFFFF;
+            border-bottom: none;
+        }
+
+        .video-section .section-header {
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .video-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform var(--transition-speed);
+        }
+
+        .video-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .video-thumb {
+            position: relative;
+            height: 180px;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 52px;
+            height: 52px;
+            background-color: var(--dodgers-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: scale var(--transition-speed);
+        }
+
+        .video-card:hover .play-btn {
+            scale: 1.1;
+        }
+
+        .play-btn::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            border-left: 15px solid #FFFFFF;
+            margin-left: 4px;
+        }
+
+        .video-info {
+            padding: 16px;
+        }
+
+        .video-duration {
+            font-size: 0.75rem;
+            color: #FFD700;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .video-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            line-height: 1.35;
+        }
+
+        footer {
+            background-color: var(--footer-bg);
+            color: #94A3B8;
+            padding: 60px 0 30px 0;
+            margin-top: var(--section-margin-v);
+            font-size: 0.88rem;
+            border-top: 4px solid var(--dodgers-blue);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 36px;
+            margin-bottom: 48px;
+        }
+
+        .footer-col h4 {
+            color: #FFFFFF;
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--dodgers-red);
+            padding-bottom: 6px;
+            display: inline-block;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            transition: color var(--transition-speed);
+        }
+
+        .footer-col ul li a:hover {
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 24px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: #64748B;
+        }
+
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .spotlight-section {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none; /* Hide top links on mobile screen sizes */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title {
+                font-size: 1.6rem;
+            }
+            .header-container {
+                justify-content: center;
+            }
+            .top-bar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <div class="container">
+            <div>
+                <strong>MLB.com</strong> | Major League Baseball Official Site
+            </div>
+            <div class="top-bar-links">
+                <a href="#">MLB.TV</a>
+                <a href="#">Tickets</a>
+                <a href="#">Shop</a>
+                <a href="#">MLB Network</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="main-header">
+        <div class="container header-container">
+            <!-- EDIT LOGO OR TEAM NAME HERE -->
+            <a href="#" class="brand-logo">
+                <span class="la-badge">LA</span>
+                <span class="brand-text">DODGERS</span>
+            </a>
+            
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Schedule</a></li>
+                    <li><a href="#">Roster</a></li>
+                    <li><a href="#">Stats</a></li>
+                    <li><a href="#">Video</a></li>
+                    <li><a href="#">Dodger Stadium</a></li>
+                    <li><a href="#" class="btn-tickets">Buy Tickets</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="ticker-section">
+        <div class="container">
+            <div class="ticker-wrapper">
+                <div class="ticker-card">
+                    <div class="status">FINAL - OCT 20</div>
+                    <div class="ticker-team"><span>NYY</span> <span>2</span></div>
+                    <div class="ticker-team"><span>LAD</span> <span>4</span></div>
+                </div>
+                <div class="ticker-card">
+                    <div class="status">FINAL - OCT 25</div>
+                    <div class="ticker-team"><span>LAD</span> <span>6</span></div>
+                    <div class="ticker-team"><span>NYY</span> <span>3</span></div>
+                </div>
+                <div class="ticker-card">
+                    <div class="status">TODAY - 7:10 PM</div>
+                    <div class="ticker-team"><span>SF</span> <span>-</span></div>
+                    <div class="ticker-team"><span>LAD</span> <span>-</span></div>
+                </div>
+                <div class="ticker-card">
+                    <div class="status">TOMORROW - 4:10 PM</div>
+                    <div class="ticker-team"><span>SD</span> <span>-</span></div>
+                    <div class="ticker-team"><span>LAD</span> <span>-</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="hero-section">
+            <div class="hero-grid">
+                <!-- Main Feature Card -->
+                <a href="#" class="hero-main">
+                    <img src="https://images.unsplash.com/photo-1508802259233-f33a75845f39?auto=format&fit=crop&w=1200&q=80" alt="Dodgers Hero News" onerror="this.src='https://placehold.co/800x500/005A9C/FFF?text=Dodgers+Hero+Story'">
+                    <div class="hero-overlay">
+                        <span class="hero-tag">FEATURE STORY</span>
+                        <h1 class="hero-title">Shohei Ohtani Delivers Massive Multi-Home Run Performance to Seal Crucial Victory</h1>
+                        <p class="hero-desc">In an electrifying showdown at Dodger Stadium, the lineup exploded with power hitting alongside an elite pitching performance to secure the win...</p>
+                    </div>
+                </a>
+
+                <!-- Side Headline List -->
+                <div class="hero-side">
+                    <a href="#" class="side-news-card">
+                        <img src="https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=200&q=80" alt="News 1" onerror="this.src='https://placehold.co/100x80/005A9C/FFF?text=LA'">
+                        <div>
+                            <span class="side-news-category">PITCHING ROTATION</span>
+                            <h3 class="side-news-title">Yoshinobu Yamamoto scheduled for Tuesday night start vs Padres</h3>
+                        </div>
+                    </a>
+
+                    <a href="#" class="side-news-card">
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=200&q=80" alt="News 2" onerror="this.src='https://placehold.co/100x80/005A9C/FFF?text=LA'">
+                        <div>
+                            <span class="side-news-category">DEFENSIVE HIGHLIGHT</span>
+                            <h3 class="side-news-title">Mookie Betts showcases Gold Glove defense to save late-inning lead</h3>
+                        </div>
+                    </a>
+
+                    <a href="#" class="side-news-card">
+                        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=200&q=80" alt="News 3" onerror="this.src='https://placehold.co/100x80/005A9C/FFF?text=LA'">
+                        <div>
+                            <span class="side-news-category">STADIUM EVENTS</span>
+                            <h3 class="side-news-title">Dodger Stadium announces special giveaway nights for upcoming home stand</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="spotlight-section">
+            <div class="spotlight-img-wrap">
+                <span class="spotlight-badge">PLAYER SPOTLIGHT</span>
+                <img src="https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=600&q=80" alt="Shohei Ohtani" onerror="this.src='https://placehold.co/500x500/002D62/FFF?text=Shohei+Ohtani'">
+            </div>
+            <div class="spotlight-content">
+                <h3>Designated Hitter / Pitcher • #17</h3>
+                <h2>SHOHEI OHTANI</h2>
+                <div class="spotlight-stats">
+                    <div class="stat-item">
+                        <div class="value">.310</div>
+                        <div class="label">AVG</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="value">54</div>
+                        <div class="label">HR</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="value">130</div>
+                        <div class="label">RBI</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="value">59</div>
+                        <div class="label">SB</div>
+                    </div>
+                </div>
+                <p class="spotlight-bio">
+                    Continuing a historic season with unprecedented power and speed milestones, leading the National League across major offensive categories while thrilling fans worldwide.
+                </p>
+                <a href="#" class="btn-tickets" style="display:inline-block;">View Full Player Stats</a>
+            </div>
+        </section>
+
+        <section class="news-section">
+            <div class="section-header">
+                <h2 class="section-title">Latest Dodgers News</h2>
+                <a href="#" class="view-all-link">Read All News &rarr;</a>
+            </div>
+
+            <div class="cards-grid">
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1508802259233-f33a75845f39?auto=format&fit=crop&w=500&q=80" alt="News Image" class="news-card-img" onerror="this.src='https://placehold.co/400x250/005A9C/FFF?text=Dodgers+News'">
+                    <div class="news-card-body">
+                        <div class="news-card-date">October 7, 2026</div>
+                        <h3 class="news-card-title">Postseason Countdown: Manager outlines bullpen strategy and roster adjustments</h3>
+                        <p class="news-card-excerpt">As crucial playoff matchups approach, the coaching staff finalised strategic depth options...</p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=500&q=80" alt="News Image" class="news-card-img" onerror="this.src='https://placehold.co/400x250/005A9C/FFF?text=Dodgers+News'">
+                    <div class="news-card-body">
+                        <div class="news-card-date">October 6, 2026</div>
+                        <h3 class="news-card-title">Dodgers Foundation host annual community youth baseball clinic</h3>
+                        <p class="news-card-excerpt">Players and coaches spent the afternoon mentoring local Little League players in Los Angeles...</p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=500&q=80" alt="News Image" class="news-card-img" onerror="this.src='https://placehold.co/400x250/005A9C/FFF?text=Dodgers+News'">
+                    <div class="news-card-body">
+                        <div class="news-card-date">October 5, 2026</div>
+                        <h3 class="news-card-title">High-powered offense launches four homers in dominant home win</h3>
+                        <p class="news-card-excerpt">Every spot in the batting order produced hits as LA stormed to an early lead...</p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=500&q=80" alt="News Image" class="news-card-img" onerror="this.src='https://placehold.co/400x250/005A9C/FFF?text=Dodgers+News'">
+                    <div class="news-card-body">
+                        <div class="news-card-date">October 4, 2026</div>
+                        <h3 class="news-card-title">Official Team Store releases limited edition postseason merchandise</h3>
+                        <p class="news-card-excerpt">Get ready for October baseball with authentic jerseys, caps, and postseason apparel...</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="video-section">
+            <div class="section-header">
+                <h2 class="section-title">Video Highlights</h2>
+                <a href="#" class="view-all-link" style="color: #FFFFFF;">More Videos &rarr;</a>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <img src="https://images.unsplash.com/photo-1508802259233-f33a75845f39?auto=format&fit=crop&w=400&q=80" alt="Video Thumb" onerror="this.src='https://placehold.co/400x250/002D62/FFF?text=Play+Video'">
+                        <div class="play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-duration">3:45</div>
+                        <p class="video-title">Top 10 defensive plays of the week compilation</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <img src="https://images.unsplash.com/photo-1562077772-3bd90403f7f0?auto=format&fit=crop&w=400&q=80" alt="Video Thumb" onerror="this.src='https://placehold.co/400x250/002D62/FFF?text=Play+Video'">
+                        <div class="play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-duration">2:15</div>
+                        <p class="video-title">Shohei Ohtani's monster 50th home run in slow motion</p>
+                    </div>
+                </div>
+
+                <div class="video-card">
+                    <div class="video-thumb">
+                        <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=400&q=80" alt="Video Thumb" onerror="this.src='https://placehold.co/400x250/002D62/FFF?text=Play+Video'">
+                        <div class="play-btn"></div>
+                    </div>
+                    <div class="video-info">
+                        <div class="video-duration">5:10</div>
+                        <p class="video-title">Postgame Press Conference: Manager reviews pitching outing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Tickets</h4>
+                    <ul>
+                        <li><a href="#">Single Game Tickets</a></li>
+                        <li><a href="#">Season Tickets</a></li>
+                        <li><a href="#">Group Tickets</a></li>
+                        <li><a href="#">Promotional Schedule</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Dodger Stadium</h4>
+                    <ul>
+                        <li><a href="#">Stadium Info & Parking</a></li>
+                        <li><a href="#">Stadium Tours</a></li>
+                        <li><a href="#">A-to-Z Guide</a></li>
+                        <li><a href="#">Security Policies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Team Info</h4>
+                    <ul>
+                        <li><a href="#">Roster & Coaches</a></li>
+                        <li><a href="#">Injury Report</a></li>
+                        <li><a href="#">Dodgers History</a></li>
+                        <li><a href="#">Hall of Fame</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Official MLB App</a></li>
+                        <li><a href="#">Social Media Channels</a></li>
+                        <li><a href="#">Dodgers Foundation</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Major League Baseball. All rights reserved. Replica template created for demonstration purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
